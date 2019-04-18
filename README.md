@@ -12,6 +12,10 @@ Webpack思想：一切皆模块
 
 所有项目中使用到的依赖文件都被视为模块，webpack做的就是把这些模块进行处理，进行一系列的转换、压缩、合成、混淆操作，把项目文件打包成最原始的静态资源。
 
+
+
+
+
 ### 简单体验
 
 创建目录结构
@@ -96,12 +100,28 @@ webpack会默认src/index.js文件为入口，dist/main.js为出口打包
 ```javascript
 //常用配置模块
 module.exports = {
+    devtool: ''
+    mode: 'development'      // 模式配置
     entry: '',               // 入口文件
     output: {},              // 出口文件
     module: {},              // 处理对应模块
     plugins: [],             // 对应的插件
-    devServer: {},           // 开发服务器配置
-    mode: 'development'      // 模式配置
+    devServer: {}            // 开发服务器配置
 }
+```
+
+babel转换es6+代码
+
+npm install
+
+```
+devtool:'none'   //在开发者模式下，默认开启sourcemap,将其关闭
+devtool:'source-map'   //开启映射打包会变慢
+devtool:'inline-source-map'    //不单独生成.map文件，会将生成的映射文件以base64的形式插入到打包后的js文件的底部
+devtool:'cheap-inline-source-map'   //代码出错提示不用精确显示第几行的第几个字符出错，只显示第几行出错，会提高一些性能
+devtool:'cheap-module-inline-source-map'   //不仅管自己的业务代码出错，也管第三方模块和loader的一些报错
+devtool:'eval'   //执行效率最快，性能最好，但是针对比较复杂的代码的情况下，提示内容不全面
+devtool: 'cheap-module-eval-source-map'   //在开发环境推荐使用，提示比较全，打包速度比较快
+devtool: 'cheap-module-source-map'   //在生产环境中推荐使用，提示效果会好一些
 ```
 
