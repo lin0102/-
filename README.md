@@ -12,10 +12,6 @@ Webpack思想：一切皆模块
 
 所有项目中使用到的依赖文件都被视为模块，webpack做的就是把这些模块进行处理，进行一系列的转换、压缩、合成、混淆操作，把项目文件打包成最原始的静态资源。
 
-
-
-
-
 ### 简单体验
 
 创建目录结构
@@ -95,20 +91,89 @@ webpack会默认src/index.js文件为入口，dist/main.js为出口打包
 
 ### 正式开始
 
-项目目录下创建webpack.config.js
+webpack的默认配置比较方便，但是对于不同的项目，我们往往需要高度的可定制性，这时候就需要我们自己写配置文件。
+
+在项目目录下创建webpack.config.js
 
 ```javascript
 //常用配置模块
 module.exports = {
-    devtool: ''
-    mode: 'development'      // 模式配置
     entry: '',               // 入口文件
     output: {},              // 出口文件
+    devtool: '',
+    mode: '',                // 模式配置
     module: {},              // 处理对应模块
     plugins: [],             // 对应的插件
     devServer: {}            // 开发服务器配置
+    optimization: {},        //压缩和模块分离
+    resolve: {}              //模块如何解析，路径别名
 }
 ```
+
+### 入口(entry)与出口(output)
+
+- 单入口单出口
+
+  ```javascript
+  module.exports = {
+      entry: "./src/index.js",
+      output: {
+          path: path.resolve('dist'),
+          filename: 'main.js'
+      }
+  }
+  ```
+
+  写好配置文件后再次
+
+  ```
+  npx webpack --mode development || production
+  ```
+
+  效果不变。
+
+  借用npm script，在package.json中scripts属性增加script如下
+
+  ```json
+  {
+  	"scripts": {
+      	"dev": "npx webpack --mode development",
+      	"build": "npx webpack --mode production"
+      }
+  }
+  ```
+
+  npx webpack --mode development --> npm run dev
+
+  npx webpack --mode production --> npm run build
+
+- 多入口与多出口
+
+  多入口多出口：多页面应用(MPA)，打包多个js文件，不同页面分别引入。
+
+  单入口多出口：单页面应用(SPA)，借助内置splitChunksPlugins模块进行代码分割，方便分离公共模块以及懒加载。
+
+### 模式(mode)
+
+```javascript
+module.exports = {
+    mode: 'development' || 'production'
+}
+```
+
+​	mode写入配置文件后，执行webpack时就不用再带mode选项
+
+- development
+
+  开发模式，在此模式下编写代码并测试
+
+- production
+
+  生产模式，即项目上线后
+
+理解这两种模式容易，关键是根据不同的模式对webpack做不同的配置。
+
+
 
 babel转换es6+代码
 
