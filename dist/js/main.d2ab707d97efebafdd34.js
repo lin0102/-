@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 74);
+/******/ 	return __webpack_require__(__webpack_require__.s = 75);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -2742,6 +2742,12 @@ $export($export.S, 'Promise', {
 
 /***/ }),
 /* 74 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+/* 75 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2804,7 +2810,11 @@ function print(str) {
 // EXTERNAL MODULE: ./src/style/style.css
 var style = __webpack_require__(73);
 
+// EXTERNAL MODULE: ./src/style/style.scss
+var style_style = __webpack_require__(74);
+
 // CONCATENATED MODULE: ./src/index.js
+
 
 
 
@@ -2850,4 +2860,4 @@ src_print('28888888');
 
 /***/ })
 /******/ ]);
-//# sourceMappingURL=main.3b77889b75792888612f.js.map
+//# sourceMappingURL=main.d2ab707d97efebafdd34.js.map

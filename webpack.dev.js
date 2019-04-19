@@ -1,3 +1,5 @@
+const webpack = require('webpack');
+
 module.exports = {
     mode: 'development',
     output: {
@@ -7,21 +9,29 @@ module.exports = {
     devServer: {
         contentBase: './dist',
         port: 3000,
-        hot: true
+        hot: true,
+        open: false
     },
     module: {
         rules: [
             {
-                test: /\.css$/,
+                test: /\.s?css$/,
                 use: [
                     'style-loader',
                     'css-loader',
-                    'postcss-loader'
+                    'sass-loader',
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            plugins: [require('autoprefixer')]
+                        }
+                    }
                 ]
             }
         ]
     },
     plugins: [
-        
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.NamedModulesPlugin(),
     ]
 }
