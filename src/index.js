@@ -17,3 +17,8 @@ asyncPrint("hello,world", 5000);
 
 print('28888888');
 
+fetch('/api')
+    .then(res => {
+        console.log(res);
+    })
+

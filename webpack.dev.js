@@ -1,5 +1,3 @@
-const webpack = require('webpack');
-
 module.exports = {
     mode: 'development',
     output: {
@@ -10,7 +8,10 @@ module.exports = {
         contentBase: './dist',
         port: 3000,
         hot: true,
-        open: false
+        open: false,
+        proxy: {
+            '/api': "http://localhost:8000/"
+        }
     },
     module: {
         rules: [
@@ -30,8 +31,4 @@ module.exports = {
             }
         ]
     },
-    plugins: [
-        new webpack.HotModuleReplacementPlugin(),
-        new webpack.NamedModulesPlugin(),
-    ]
 }
